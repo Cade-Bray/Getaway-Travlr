@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {TripListing} from './trip-listing/trip-listing';
+import {trips} from './data/trips';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,6 @@ import {TripListing} from './trip-listing/trip-listing';
 })
 export class App {
   protected readonly title = 'Travlr Getaways Admin!';
+
+  trips: Array<any> = trips;
 }

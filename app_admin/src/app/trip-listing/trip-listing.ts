@@ -1,22 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import {trips} from '../data/trips';
-import {JsonPipe} from '@angular/common';
+import {Component, Input, OnInit} from '@angular/core';
+import {TripCard} from '../trip-card/trip-card';
 
 @Component({
   selector: 'app-trip-listing',
   imports: [
-    JsonPipe
+    TripCard
   ],
   templateUrl: './trip-listing.html',
   styleUrl: './trip-listing.css'
 })
 
 export class TripListing implements OnInit{
-  trips: Array<any> = trips;
-
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit() {}
 
-  }
+  @Input() trip!: any[];
 }

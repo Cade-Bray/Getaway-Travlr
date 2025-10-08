@@ -18,15 +18,7 @@
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
-            "styles": [
-              "src/assets/css/styles.css"
-            ]
+            "assets": ["src/favicon.ico", "src/assets"]
           },
           "configurations": {
             "production": {

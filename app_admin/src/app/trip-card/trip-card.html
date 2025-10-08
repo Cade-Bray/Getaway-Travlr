@@ -1,0 +1,31 @@
+<!-- This is the card window -->
+<div class="row justify-content-center">
+  <!-- This is the card generator -->
+  @for (trip of trips; track trip.code) {
+    <!-- This is the start of a card container -->
+    <div class="card m-4 col-3 col-sm-12" style="width: 18rem; background-color: #f8f8f8;">
+      <!-- Card header -->
+      <div class="card-header" style="background-color: #f8f8f8;"><b>{{ trip.name }}</b></div>
+      <!-- Card image container because it needs to have a container and fixed size to fill into -->
+      <div class="card-img-top-container rounded-5" style="position: relative; width: 100%; height: 200px;">
+        <!-- Since this is the main images on the page we're using priority keyword to reduce lazy loading -->
+        <img
+          [ngSrc]="'assets/images/' + trip.image"
+          alt="trip thumbnail"
+          class="card-img-top rounded-5 mt-2"
+          fill priority>
+      </div>
+
+      <!-- Card body section -->
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">{{ trip.resort }}</h6>
+        <p class="card-subtitle mt-3 mb-3 mb-3 text-muted">
+          {{ trip.length }} only {{ trip.perPerson|currency:'USD':'symbol' }}
+        </p>
+        <p class="card-text" [innerHTML]="trip.description"></p>
+      </div>
+    </div>
+  } @empty {
+  <h6>NO TRIPS PRESENT</h6>
+  }
+</div>
