@@ -15,5 +15,5 @@ export class TripListing implements OnInit{
 
   ngOnInit() {}
 
-  @Input() trip!: any[];
+  @Input() trips!: any[];
 }

@@ -12,5 +12,5 @@ import {CurrencyPipe, NgOptimizedImage} from "@angular/common";
 })
 export class TripCard {
 
-  @Input() trip!: any[];
+  @Input() trips!: any[];
 }
