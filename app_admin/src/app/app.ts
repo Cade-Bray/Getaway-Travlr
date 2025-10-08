@@ -11,6 +11,4 @@ import {trips} from './data/trips';
 })
 export class App {
   protected readonly title = 'Travlr Getaways Admin!';
-
-  trips: Array<any> = trips;
 }
