@@ -8,42 +8,32 @@ require('./app_server/helpers/hbs-helpers')(handlebars); //helper scripts
 require('./app_api/models/db'); // Connection to database.
 
 // Route handlers
-const indexRouter = require('./app_server/routes/index');
-const usersRouter = require('./app_server/routes/users');
-const travelRouter = require('./app_server/routes/travel');
-const aboutRouter = require('./app_server/routes/about');
-const contactRouter = require('./app_server/routes/contact');
-const roomsRouter = require('./app_server/routes/rooms');
-const mealsRouter = require('./app_server/routes/meals');
-const newsRouter = require('./app_server/routes/news');
+const serverRouter = require('./app_server/routes/main');
 const apiRouter = require('./app_api/routes/index');
 
+// Define the express application
 const app = express();
 
-// view engine setup
+// View engine setup using Handlebars. Required above.
 app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'hbs');
 
 // Register partials directory for handlebars
 handlebars.registerPartials(path.join(__dirname, 'app_server', 'views', 'partials'));
 
+// Using npm modules
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/travel', travelRouter);
-app.use('/about', aboutRouter);
-app.use('/contact', contactRouter);
-app.use('/rooms', roomsRouter);
-app.use('/meals', mealsRouter);
-app.use('/news', newsRouter);
+// Express server routers for MPA
+app.use('/', serverRouter);
+
+// Express server routers for API backend
 app.use('/api', apiRouter);
 
-// Moved static files middleware after route definitions
-// This ensures that static files are served only if no route matches.
+// Moved static files middleware after route definitions. This ensures that static files are served if no route matches.
 app.use(express.static(path.join(__dirname, 'public')));
 
 // catch 404 and forward to error handler

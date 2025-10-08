@@ -1,5 +1,5 @@
-const tripsEndpoint = 'http:/localhost:3000/api/trips';
-const options = {
+const tripsEndpoint = 'http:/localhost:3000/api/trips'; // Trips endpoint for API calls.
+const options = { // This is the fetch options
     method: 'GET',
     headers: {
         'Accept' : 'application/json'
@@ -27,13 +27,14 @@ async function travel(req, res) {
         }
         
         // Pack 200 and return JSON formatted data in the express response.
-        return res.status(200).render('travel', {title: 'Travlr Getaways', trips: data});
+        return res.status(200).render('travel', {title: 'Travlr Getaways', trips: data, activePage: 'travel'});
     } catch ({name, message}) {
         // System failed to capture data or send it. 500 internal error and send error message.
         return res.status(500).json({type: name, message: message});
     }
 }
 
+// Module export of the controller. This will be references in an app_server route.
 module.exports = {
     travel
 }
