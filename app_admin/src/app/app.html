@@ -1,11 +1,11 @@
-<div style="background-color: floralwhite">
+<body style="background-color: floralwhite; overflow-x: hidden">
   <div class="sticky-top navbar row p-3" style="background-color: #2c9688;">
     <div class="container-fluid">
       <a class="navbar-brand" style="color: floralwhite" href="#">{{title}}</a>
     </div>
   </div>
   <div class="container-fluid row">
-    <app-trip-listing>Loading...</app-trip-listing>
+    <router-outlet class="flex-fill"/>
   </div>
-</div>
-<router-outlet />
+</body>
+

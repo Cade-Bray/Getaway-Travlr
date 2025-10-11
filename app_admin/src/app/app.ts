@@ -5,7 +5,7 @@ import {trips} from './data/trips';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TripListing],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TripCard} from '../trip-card/trip-card';
 import {Trip} from '../models/trip';
 import {TripData} from '../services/trip-data';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-trip-listing',
@@ -14,7 +15,7 @@ import {TripData} from '../services/trip-data';
 })
 
 export class TripListing implements OnInit{
-  constructor(private tripDataService: TripData) {
+  constructor(private tripDataService: TripData, private router: Router) {
     console.log('trip-listing constructor');
   }
 
@@ -24,6 +25,10 @@ export class TripListing implements OnInit{
   ngOnInit() {
     console.log('ngOnInit');
     this.getData();
+  }
+
+  public addTrip(): void {
+    this.router.navigate(['add-trip']);
   }
 
   private getData(): void {

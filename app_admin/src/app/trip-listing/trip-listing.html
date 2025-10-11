@@ -1,3 +1,12 @@
-<div>
-  <app-trip-card [trips]="trips"></app-trip-card>
+<div class="row">
+  <div class="container-fluid col-12 d-flex justify-content-end">
+    <button (click)="addTrip()" class="btn btn-info m-4 mx-5">
+      Add Trip
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div>
+    <app-trip-card [trips]="trips"></app-trip-card>
+  </div>
 </div>
