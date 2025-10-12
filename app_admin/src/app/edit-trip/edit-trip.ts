@@ -28,6 +28,28 @@ export class EditTrip implements OnInit{
     private tripService: TripData
   ) {}
 
+  public deleteTrip(): void {
+    // Retrieving the stashed trip ID
+    let tripCode = localStorage.getItem('tripCode');
+
+    // Error trapping. No trip id found.
+    if (!tripCode) {
+      alert('Something went wrong, couldn\'t find where I stashed the trip code!');
+      this.router.navigate(['']);
+      return;
+    }
+
+    this.tripService.deleteTrip(tripCode)
+      .subscribe({
+        next: () => {
+          this.router.navigate(['']);
+        },
+        error: (error: any) => {
+          console.log(`Error: ${error}`);
+        }
+      });
+  }
+
   ngOnInit() {
     // Retrieving the stashed trip ID
     let tripCode = localStorage.getItem('tripCode');
@@ -70,7 +92,7 @@ export class EditTrip implements OnInit{
           this.editForm.patchValue(formattedTrip);
 
           // Error Trapping
-          if (this.trip) {
+          if (!this.trip) {
             this.message = 'No Trip Retrieved from database!';
           } else {
             this.message = `Trip: ${tripCode} retrieved`;

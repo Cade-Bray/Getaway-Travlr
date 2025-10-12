@@ -24,7 +24,7 @@ export class TripData {
    * mongoose model of the trip code being unique.
    * @param tripCode This is a string of a trip code.
    */
-  getTrip(tripCode : String): Observable<Trip[]> {
+  getTrip(tripCode: String): Observable<Trip[]> {
     return this.http.get<Trip[]>(`${this.endpoint}/${tripCode}`);
   }
 
@@ -42,5 +42,13 @@ export class TripData {
    */
   updateTrip(formData: Trip) : Observable<Trip> {
     return this.http.put<Trip>(`${this.endpoint}/${formData.code}`, formData);
+  }
+
+  /**
+   * This function will use the app_api/controllers/trips.js delete call given the endpoint.
+   * @param tripCode The given trip code to delete as a string.
+   */
+  deleteTrip(tripCode: String): Observable<any> {
+    return this.http.delete(`${this.endpoint}/${tripCode}`);
   }
 }

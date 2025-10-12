@@ -10,6 +10,7 @@ router
 router
     .route('/trips/:tripCode')
     .get(tripsCtrl.tripsFindByCode)
-    .put(tripsCtrl.tripsUpdateTrip); // PUT request to update a trip
+    .put(tripsCtrl.tripsUpdateTrip)
+    .delete(tripsCtrl.tripsDeleteTrip);
 
 module.exports = router;

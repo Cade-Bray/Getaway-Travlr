@@ -105,9 +105,30 @@ async function tripsUpdateTrip(req, res) {
     }
 }
 
+/**
+ * DELETE - /trips/:tripcode
+ * This function will delete the given trip code found in the database.
+ * @param req Express provided requirements. This is used to grab the trip code from the parameters.
+ * @param res Express provided requirements. This is used for the packed response.
+ */
+function tripsDeleteTrip(req, res) {
+    const query = Model.findOneAndDelete(
+        {'code': req.params.tripCode}
+    ).exec();
+    
+    if (query === null) {
+        return res.status(404).json({message: `There was no trip found under trip code ${req.params.tripCode}`});
+    } else if (query) {
+        return res.status(200).json(query);
+    } else {
+        return res.status(400).json({message: 'Bad request'});
+    }
+}
+
 module.exports = {
     tripsList,
     tripsFindByCode,
     tripsAddTrip,
+    tripsDeleteTrip,
     tripsUpdateTrip
 }
