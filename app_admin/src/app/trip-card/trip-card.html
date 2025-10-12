@@ -3,7 +3,9 @@
   <!-- This is the card generator -->
   @for (trip of trips; track trip.code) {
     <!-- This is the start of a card container -->
-    <div class="card m-4 col-3 col-sm-12" style="width: 18rem; background-color: #f8f8f8;">
+    <a (click)="updateTrip(trip)"
+       class="card-link card m-4 col-3 col-sm-12 d-flex flex-column"
+       style="width: 18rem; background-color: #f8f8f8; text-decoration: none">
       <!-- Card header -->
       <div class="card-header" style="background-color: #f8f8f8;"><b>{{ trip.name }}</b></div>
       <!-- Card image container because it needs to have a container and fixed size to fill into -->
@@ -17,14 +19,16 @@
       </div>
 
       <!-- Card body section -->
-      <div class="card-body">
+      <div class="card-body d-flex flex-column" style="flex: 1 1 auto;">
         <h6 class="card-subtitle mb-2 text-muted">{{ trip.resort }}</h6>
         <p class="card-subtitle mt-3 mb-3 mb-3 text-muted">
-          {{ trip.length }} only {{ trip.perPerson|currency:'USD':'symbol' }}
+          Starts on: {{ trip.start | date: 'shortDate'}} <br>
+          {{ trip.length }} only {{ trip.perPerson | currency:'USD':'symbol' }}
         </p>
         <p class="card-text" [innerHTML]="trip.description"></p>
+        <button class="btn-info btn mt-auto align-self-center" style="width: 25%">Edit</button>
       </div>
-    </div>
+    </a>
   } @empty {
     <div class="row justify-content-center">
       <h6>NO TRIPS PRESENT</h6>
