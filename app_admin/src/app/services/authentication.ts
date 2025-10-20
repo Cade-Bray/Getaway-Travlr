@@ -80,7 +80,7 @@ export class Authentication {
     this.tripDataService.login(user, passwd).subscribe({
       next: (value: any) => {
         if(value){
-          this.authResp = value;
+          this.authResp.token = value;
           this.saveToken(this.authResp.token);
         }
       },

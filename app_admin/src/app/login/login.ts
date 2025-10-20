@@ -49,10 +49,11 @@ export class Login implements OnInit{
 
   public onLoginSubmit(): void {
     this.formError = '';
-    if (!this.credentials.email || !this.credentials.password || !this.credentials.name) {
+    if (!this.credentials.email || !this.credentials.password) {
       this.formError = 'All fields are required, please try again.';
       this.router.navigateByUrl('#');
     } else {
+      this.credentials.name = ' ';
       this.doLogin();
     }
   }
