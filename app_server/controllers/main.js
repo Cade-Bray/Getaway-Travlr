@@ -14,24 +14,6 @@ function index(req, res) {
 }
 
 /**
- * This function is the rooms router for the Travlr Getaways web application.
- * @param req Express provided requirements.
- * @param res Express provided response used for rendering.
- */
-function rooms(req, res) {
-    res.render("rooms", { title: "Travlr Getaways", activePage: "rooms" });
-}
-
-/**
- * This function is the meals router for the Travlr Getaways web application.
- * @param req Express provided requirements.
- * @param res Express provided response used for rendering.
- */
-function meals(req, res) {
-    res.render("meals", { title: "Travlr Getaways", activePage: "meals" });
-}
-
-/**
  * This function is the news router for the Travlr Getaways web application.
  * @param req Express provided requirements.
  * @param res Express provided response used for rendering.
@@ -50,20 +32,48 @@ function about(req, res) {
 }
 
 /**
- * This function is the contact router for the Travlr Getaways web application.
+ * This function is the login router for the Travlr Getaways web application.
  * @param req Express provided requirements.
  * @param res Express provided response used for rendering.
  */
-function contact(req, res) {
-    res.render("contact", { title: "Travlr Getaways", activePage: "contact" });
+function login(req, res) {
+    res.render("login", { title: "Travlr Getaways", activePage: "login" });
+}
+
+/**
+ * This function is the reservation router for the Travlr Getaways web application.
+ * @param req Express provided requirements.
+ * @param res Express provided response used for rendering.
+ */
+function register(req, res) {
+    res.render("register", { title: "Travlr Getaways", activePage: "register" });
+}
+
+/**
+ * This function is the reservation router for the Travlr Getaways web application.
+ * @param req Express provided requirements.
+ * @param res Express provided response used for rendering.
+ */
+function reservation(req, res) {
+    res.render("reservations", { title: "Travlr Getaways", activePage: "reservation" });
+}
+
+/**
+ * This function is the reservation router for the Travlr Getaways web application.
+ * @param req Express provided requirements.
+ * @param res Express provided response used for rendering.
+ */
+function checkout(req, res) {
+    res.render("checkout", { title: "Travlr Getaways", activePage: "checkout" });
 }
 
 // module exports of controllers. This will be referenced most likely in an app_server route.
 module.exports = {
     index,
-    rooms,
-    meals,
     news,
     about,
-    contact
+    login,
+    reservation,
+    checkout,
+    register
 };

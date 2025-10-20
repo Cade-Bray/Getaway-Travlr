@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Website template by freewebsitetemplates.com -->
 <!--suppress HtmlUnknownTarget -->
 <html lang="en">
 <head>
@@ -8,6 +7,7 @@
 	<link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
+    <script src="/javascripts/add-to-cart.js"></script>
 	<div id="background">
 		<div id="page">
             {{> header }}
@@ -21,7 +21,21 @@
                                     <li>
                                         <a href="/travel"><img src="images/{{this.image}}" alt="Img"></a>
                                         <h2><a href="/travel">{{this.name}}</a></h2>
+                                        <div>
+                                            <h4 style="display: inline">Resort: </h4>
+                                            <p style="display: inline">{{this.resort}}</p>
+                                        </div>
+                                        <div>
+                                            <h4 style="display: inline">Length: </h4>
+                                            <p style="display: inline">{{this.length}}</p>
+                                        </div>
                                         {{{this.description}}}
+                                        <p id="code">{{this.code}}</p>
+                                        <div>
+                                            <h4 style="display: inline">Cost: </h4>
+                                            <p style="display: inline">{{this.perPerson}}</p>
+                                        </div>
+                                        <button style="margin-bottom: 5vh">Add to Cart</button>
                                     </li>
                                 {{/each}}
 							</ul>

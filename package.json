@@ -8,6 +8,7 @@
   "dependencies": {
     "@angular/cli": "^20.3.5",
     "angular": "^1.8.3",
+    "bootstrap": "^5.3.8",
     "cookie-parser": "~1.4.4",
     "crypto": "^1.0.1",
     "debug": "~2.6.9",
