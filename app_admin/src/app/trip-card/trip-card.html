@@ -2,9 +2,15 @@
 <div class="row justify-content-center">
   <!-- This is the card generator -->
   @for (trip of trips; track trip.code) {
-    <!-- This is the start of a card container -->
-    <a (click)="updateTrip(trip)"
+    <!--
+    This is the start of a card container. By Making it isLoggedIn() && updateTrip(trip) we can allow people to see the
+    trips but not edit them because they need to be logged in first.
+    -->
+    <a (click)="isLoggedIn() && updateTrip(trip)"
        class="card-link card m-4 col-3 col-sm-12 d-flex flex-column"
+       [class.disabled]="!isLoggedIn()"
+       [attr.tabindex]="isLoggedIn() ? 0 : -1"
+       [attr.aria-disabled]="!isLoggedIn()"
        style="width: 18rem; background-color: #f8f8f8; text-decoration: none">
       <!-- Card header -->
       <div class="card-header" style="background-color: #f8f8f8;"><b>{{ trip.name }}</b></div>
@@ -26,12 +32,18 @@
           {{ trip.length }} only {{ trip.perPerson | currency:'USD':'symbol' }}
         </p>
         <p class="card-text" [innerHTML]="trip.description"></p>
-        <button class="btn-info btn mt-auto align-self-center" style="width: 25%">Edit</button>
+        @if (isLoggedIn()) {
+          <!--
+          This doesn't actually go anywhere because the whole card is clickable to the navigation. It's just a user
+          que for the user experience.
+          -->
+          <button class="btn-info btn mt-auto align-self-center" style="width: 25%">Edit</button>
+        }
       </div>
     </a>
   } @empty {
     <div class="row justify-content-center">
-      <h6>NO TRIPS PRESENT</h6>
+      <h6 class="align-self-center p-5">NO TRIPS PRESENT</h6>
     </div>
   }
 </div>

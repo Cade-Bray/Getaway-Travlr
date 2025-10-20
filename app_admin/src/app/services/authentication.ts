@@ -18,24 +18,41 @@ export class Authentication {
   authResp: AuthResponse = new AuthResponse();
 
   public getToken(): string {
-    let out: any;
-    out = this.storage.getItem('travlr-token');
-
-    // Make sure we return a string even if we don't have a token
-    if (!out){
+    try {
+      if (!this.storage || typeof this.storage.getItem !== 'function') {
+        console.warn('Storage unavailable');
+        return '';
+      }
+      const raw = this.storage.getItem('travlr-token');
+      console.log('travlr-token raw:', raw, 'typeof:', typeof raw);
+      if (raw == null) { return ''; }
+      const trimmed = String(raw).trim();
+      if (/^(?:undefined|null|)$/i.test(trimmed)) {
+        return '';
+      }
+      return trimmed;
+    } catch (err) {
+      console.warn('Error reading storage:', err);
       return '';
     }
-    return out;
   }
 
   // Save our token to our Storage provider.
   public saveToken(token: string): void {
-    this.storage.setItem('travlr-token', token);
+    try {
+      this.storage?.setItem('travlr-token', token);
+    } catch (err) {
+      console.warn('Failed to save token:', err);
+    }
   }
 
   // Logout of our application and remove the JWT from local storage
   public logout(): void {
-    this.storage.removeItem('travlr-token');
+    try {
+      this.storage?.removeItem('travlr-token');
+    } catch (err) {
+      console.warn('Failed to remove token:', err);
+    }
   }
 
   // Boolean to determine if we are logged in and the token is still valid. Even if we have a token we still have to

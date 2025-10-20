@@ -1,3 +1,4 @@
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -6,7 +7,7 @@ const logger = require('morgan');
 const handlebars = require('hbs');
 require('./app_server/helpers/hbs-helpers')(handlebars); //helper scripts
 require('./app_api/models/db'); // Connection to database.
-require('dotenv').config();
+require('./app_api/models/user');
 const passport = require('passport');
 require('./app_api/config/passport');
 
