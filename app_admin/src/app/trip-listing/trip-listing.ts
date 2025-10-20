@@ -21,14 +21,12 @@ export class TripListing implements OnInit{
     private router: Router,
     private authenticationService: Authentication
   ) {
-    console.log('trip-listing constructor');
   }
 
   message: string = '';
   trips!: Trip[];
 
   ngOnInit() {
-    console.log('ngOnInit');
     this.getData();
   }
 
@@ -50,7 +48,6 @@ export class TripListing implements OnInit{
           } else {
             this.message = 'There were no trips retrieved from the database.';
           }
-          console.log(this.message);
         },
         error: (error: any) => {
           console.log(`Error: ${error}`);

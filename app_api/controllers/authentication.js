@@ -36,10 +36,10 @@ async function register(req, res) {
 }
 
 /**
- * 
- * @param req
- * @param res
- * @return {Promise<void>}
+ * This function handles the login authentication.
+ * @param req Express provided requirements. Used to parse the email and password.
+ * @param res Express provided response. This is packed with a status and json data.
+ * @return {Promise<void>} Returning a status code 200/400/401/404 packed in an express response. Packed with JSON data.
  */
 async function login(req, res) {
     // Error trap for not filling out all fields.

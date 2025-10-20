@@ -24,7 +24,6 @@ export class Authentication {
         return '';
       }
       const raw = this.storage.getItem('travlr-token');
-      console.log('travlr-token raw:', raw, 'typeof:', typeof raw);
       if (raw == null) { return ''; }
       const trimmed = String(raw).trim();
       if (/^(?:undefined|null|)$/i.test(trimmed)) {
@@ -81,7 +80,6 @@ export class Authentication {
     this.tripDataService.login(user, passwd).subscribe({
       next: (value: any) => {
         if(value){
-          console.log(value);
           this.authResp = value;
           this.saveToken(this.authResp.token);
         }
