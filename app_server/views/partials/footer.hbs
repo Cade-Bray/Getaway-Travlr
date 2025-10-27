@@ -1,0 +1,38 @@
+<div id="footer">
+    <div>
+        <ul class="navigation">
+            <li {{#if (eq activePage "home")}}class="selected"{{/if}}>
+                <a href="/">Home</a>
+            </li>
+            <li {{#if (eq activePage "travel")}}class="selected"{{/if}}>
+                <a href="/travel">Travel</a>
+            </li>
+            <li {{#if (eq activePage "news")}}class="selected"{{/if}}>
+                <a href="/news">News</a>
+            </li>
+            <li {{#if (eq activePage "reservation")}}class="selected"{{/if}}>
+                <a href="/reservation" data-auth-required="true">Reservations</a>
+            </li>
+            <li {{#if (eq activePage "news")}}class="selected"{{/if}}>
+                <a href="http://localhost:4200/">Admin</a>
+            </li>
+            <li {{#if (eq activePage "checkout")}}class="selected"{{/if}}>
+                <a href="/checkout">Checkout</a>
+            </li>
+            <!-- show when NOT authenticated -->
+            <li data-guest-only {{#if (eq activePage "login")}}class="selected"{{/if}}>
+                <a href="/login">Login</a>
+            </li>
+            <!-- show when authenticated -->
+            <li data-auth-only data-auth-logout id="navLogoutLi" style="display:none;">
+                <a href="#" id="logoutBtn">Logout</a>
+            </li>
+        </ul>
+        <div id="connect">
+            <a href="http://pinterest.com/fwtemplates/" target="_blank" class="pinterest"></a> <a href="http://freewebsitetemplates.com/go/facebook/" target="_blank" class="facebook"></a> <a href="http://freewebsitetemplates.com/go/twitter/" target="_blank" class="twitter"></a> <a href="http://freewebsitetemplates.com/go/googleplus/" target="_blank" class="googleplus"></a>
+        </div>
+    </div>
+    <p>
+        © 2025 by Cade Bray. All Rights Reserved
+    </p>
+</div>

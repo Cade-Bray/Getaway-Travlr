@@ -1,0 +1,38 @@
+<!--suppress HtmlUnknownTarget -->
+<div id="header">
+    <script src="/javascripts/link-auth.js"></script>
+    <script src="/javascripts/auth.js"></script>
+    <div id="logo">
+        <a href="/"><img src="images/logo.png" alt="LOGO" height="100" width="200"></a>
+    </div>
+    <div id="navigation">
+        <ul>
+            <li {{#if (eq activePage "home")}}class="selected"{{/if}}>
+                <a href="/">Home</a>
+            </li>
+            <li {{#if (eq activePage "travel")}}class="selected"{{/if}}>
+                <a href="/travel">Travel</a>
+            </li>
+            <li {{#if (eq activePage "news")}}class="selected"{{/if}}>
+                <a href="/news">News</a>
+            </li>
+            <li {{#if (eq activePage "reservation")}}class="selected"{{/if}}>
+                <a href="/reservation" data-auth-required="true">Reservations</a>
+            </li>
+            <li {{#if (eq activePage "news")}}class="selected"{{/if}}>
+                <a href="http://localhost:4200/">Admin</a>
+            </li>
+            <li {{#if (eq activePage "checkout")}}class="selected"{{/if}}>
+                <a href="/checkout">Checkout</a>
+            </li>
+            <!-- show when NOT authenticated -->
+            <li data-guest-only {{#if (eq activePage "login")}}class="selected"{{/if}}>
+                <a href="/login">Login</a>
+            </li>
+            <!-- show when authenticated -->
+            <li data-auth-only data-auth-logout id="navLogoutLi" style="display:none;">
+                <a href="#" id="logoutBtn">Logout</a>
+            </li>
+        </ul>
+    </div>
+</div>

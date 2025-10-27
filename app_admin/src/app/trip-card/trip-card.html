@@ -1,0 +1,49 @@
+<!-- This is the card window -->
+<div class="row justify-content-center">
+  <!-- This is the card generator -->
+  @for (trip of trips; track trip.code) {
+    <!--
+    This is the start of a card container. By Making it isLoggedIn() && updateTrip(trip) we can allow people to see the
+    trips but not edit them because they need to be logged in first.
+    -->
+    <a (click)="isLoggedIn() && updateTrip(trip)"
+       class="card-link card m-4 col-3 col-sm-12 d-flex flex-column"
+       [class.disabled]="!isLoggedIn()"
+       [attr.tabindex]="isLoggedIn() ? 0 : -1"
+       [attr.aria-disabled]="!isLoggedIn()"
+       style="width: 18rem; background-color: #f8f8f8; text-decoration: none">
+      <!-- Card header -->
+      <div class="card-header" style="background-color: #f8f8f8;"><b>{{ trip.name }}</b></div>
+      <!-- Card image container because it needs to have a container and fixed size to fill into -->
+      <div class="card-img-top-container rounded-5" style="position: relative; width: 100%; height: 200px;">
+        <!-- Since this is the main images on the page we're using priority keyword to reduce lazy loading -->
+        <img
+          [ngSrc]="'assets/images/' + trip.image"
+          alt="trip thumbnail"
+          class="card-img-top rounded-5 mt-2"
+          fill priority>
+      </div>
+
+      <!-- Card body section -->
+      <div class="card-body d-flex flex-column" style="flex: 1 1 auto;">
+        <h6 class="card-subtitle mb-2 text-muted">{{ trip.resort }}</h6>
+        <p class="card-subtitle mt-3 mb-3 mb-3 text-muted">
+          Starts on: {{ trip.start | date: 'shortDate'}} <br>
+          {{ trip.length }} only {{ trip.perPerson | currency:'USD':'symbol' }}
+        </p>
+        <p class="card-text" [innerHTML]="trip.description"></p>
+        @if (isLoggedIn()) {
+          <!--
+          This doesn't actually go anywhere because the whole card is clickable to the navigation. It's just a user
+          que for the user experience.
+          -->
+          <button class="btn-info btn mt-auto align-self-center" style="width: 25%">Edit</button>
+        }
+      </div>
+    </a>
+  } @empty {
+    <div class="row justify-content-center">
+      <h6 class="align-self-center p-5">NO TRIPS PRESENT</h6>
+    </div>
+  }
+</div>

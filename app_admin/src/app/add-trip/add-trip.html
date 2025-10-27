@@ -1,0 +1,38 @@
+<div class="col-md-4 container-fluid mt-3">
+  <h2 class="text-center">Add Trip</h2>
+  @if (addForm) {
+    <form [formGroup]="addForm" (ngSubmit)="onSubmit()" class="">
+      <div class="form-group">
+        @for (key of Object.keys(addForm.controls); track key){
+          @if (!(key === '_id')) {
+            <label class="mt-3">{{key | titlecase}}:</label>
+            @if (key === 'description') {
+              <textarea
+                [formControlName]="key"
+                placeholder="Make a detailed description here!"
+                class="form-control"
+                rows="10"
+                cols="40"
+                [ngClass]="{'is-invalid': submitted && f[key].errors}">
+              </textarea>
+            } @else {
+              <input
+                [type]="key === 'start' ? 'date' : 'text'"
+                [formControlName]=key
+                [placeholder]=key
+                class="form-control"
+                [ngClass]="{'is-invalid': submitted && f[key].errors}">
+            }
+
+            @if (submitted && f[key].errors) {
+              @if (f[key].errors['required']) {
+                <div class="text-center"><b>{{ key | titlecase }} is required</b></div>
+              }
+            }
+          }
+        }
+      </div>
+      <button type="submit" class="btn btn-info my-3">Save</button>
+    </form>
+  }
+</div>
